@@ -14,7 +14,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center p-4 gap-5">
+    <nav className="flex flex-col md:flex-row justify-between items-center p-4 gap-5">
       <div className="flex justify-between items-center w-full md:w-auto gap-5">
         {/* Logo */}
         <Link href="/">
@@ -58,7 +58,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 

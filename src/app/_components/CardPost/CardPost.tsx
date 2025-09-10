@@ -39,7 +39,7 @@ const CardPost = ({ product }: { product: Product }) => {
         <CardContent className="px-5">
           <CardTitle className="pb-3 !text-green-800">{product.title}</CardTitle>
           <CardDescription>
-            <p className="!line-clamp-2 text-sm text-gray-600">
+            <p className="!line-clamp-1 text-sm text-gray-600">
               {product.description}
             </p>
             <div className="flex justify-between items-center mt-2">
