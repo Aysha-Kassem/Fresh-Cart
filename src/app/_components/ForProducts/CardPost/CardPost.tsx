@@ -7,10 +7,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../components/ui/card";
+} from "../../../../components/ui/card";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import { Product } from "../../../Types/product.t";
+import { Product } from "../../../../Types/product.t";
 import Link from "next/link";
 import ButtonCart from "../ButtonCart/ButtonCart";
 import ButtonWishList from "../ButtonWishList/ButtonWishList";
@@ -20,7 +20,7 @@ const CardPost = ({ product }: { product: Product }) => {
 
   return (
     <Card
-      className="relative max-w-sm md:max-w-md lg:max-w-lg border-0 shadow-sm hover:shadow-green-600 m-5 transition-shadow duration-300"
+      className="relative max-w-sm md:max-w-md lg:max-w-lg border-0 shadow-sm hover:shadow-green-600 transition-shadow duration-300"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -37,7 +37,7 @@ const CardPost = ({ product }: { product: Product }) => {
         </CardHeader>
 
         <CardContent className="px-5">
-          <CardTitle className="pb-3 !text-green-800">{product.title}</CardTitle>
+          <CardTitle className="pb-3 !text-green-800 line-clamp-2">{product.title}</CardTitle>
           <CardDescription>
             <p className="!line-clamp-1 text-sm text-gray-600">
               {product.description}

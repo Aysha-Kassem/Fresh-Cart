@@ -1,3 +1,5 @@
+import { LuLoader } from "react-icons/lu";
+
 type LoadingProps = {
   type?: "circle" | "dots" | "wave"; // نوع السبينر
   color?: string; // اللون
@@ -7,7 +9,7 @@ type LoadingProps = {
 export default function Loading({
   type = "circle",
   color = "green",
-  size = 12,
+  size = 100,
 }: LoadingProps) {
   if (type === "dots") {
     return (
@@ -36,7 +38,7 @@ export default function Loading({
               animationDelay: `${delay}s`,
               height: `${Math.floor(Math.random() * (size - 4) + 4)}px`,
             }}
-          ></div>
+          ><LuLoader /></div>
         ))}
       </div>
     );
@@ -44,9 +46,9 @@ export default function Loading({
 
   // Circle spinner
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex justify-center items-center h-screen bg-black/20">
       <div
-        className={`border-4 border-${color}-500 border-t-transparent rounded-full animate-spin`}
+        className={`border-4 border-green-800 border-t-transparent rounded-full animate-spin`}
         style={{ width: size, height: size }}
       ></div>
     </div>

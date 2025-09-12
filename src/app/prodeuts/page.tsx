@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import AllProducts from "../_components/ForProducts/AllProducts/AllProducts";
 
 const Products = () => {
   return (
     <div>
-        Products Page
+      <AllProducts />
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

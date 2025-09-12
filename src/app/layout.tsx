@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 const encodeSans = Encode_Sans_Expanded({
   variable: "--font-encode-sans",
   subsets: ["latin"],
-  weight: ["300"], // ممكن تضيفي أوزان تانية زي ["300", "400", "600"]
+  weight: ["300"],
 });
 
 export const metadata: Metadata = {
