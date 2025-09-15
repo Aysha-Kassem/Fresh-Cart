@@ -15,6 +15,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { Button } from "../../../components/ui/button";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -44,7 +45,7 @@ const Navbar = () => {
         {/* Menu Links */}
         <div className="flex flex-col md:flex-row gap-3 font-medium w-full md:w-auto">
           <Link className="hover:border-green-800 hover:border-b" href="/cart">Cart</Link>
-          <Link className="hover:border-green-800 hover:border-b" href="/cart">Wish List</Link>
+          <Link className="hover:border-green-800 hover:border-b" href="/wish-list">Wish List</Link>
           <Link className="hover:border-green-800 hover:border-b" href="/prodeuts">Products</Link>
           <Link className="hover:border-green-800 hover:border-b" href="/categories">Categories</Link>
           <Link className="hover:border-green-800 hover:border-b" href="/brands">Brands</Link>
@@ -57,9 +58,9 @@ const Navbar = () => {
             <Link className="hover:border-green-800 hover:border-b" href="/register">Register</Link>
           </div>
 
-          <button className="bg-green-800 hover:bg-green-700 text-white rounded-lg py-1 px-4 flex items-center justify-center">
+          <Button className="bg-green-800 hover:bg-green-700 text-white">
             Sign Out
-          </button>
+          </Button>
 
           {/* icons */}
           <div className="flex gap-4 text-lg justify-center items-center text-black">

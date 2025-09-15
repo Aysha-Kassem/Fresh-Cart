@@ -213,10 +213,19 @@ a , a:hover{
 
 /* for swiper */
 .swiper-pagination-bullet {
-  background: #000 !important; 
-  opacity: 0.5;
+    background: #000 !important;
+    opacity: 0.5;
 }
+
 .swiper-pagination-bullet-active {
-  background: #000 !important; 
-  opacity: 1;
+    background: #000 !important;
+    opacity: 1;
+}
+ 
+
+/* for register and login */
+@layer utilities {
+    .shadow-sm {
+        --tw-shadow: 0;
+    }
 }

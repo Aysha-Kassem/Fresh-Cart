@@ -3,9 +3,9 @@ import AllProducts from "../_components/ForProducts/AllProducts/AllProducts";
 
 const Products = () => {
   return (
-    <div>
+    <section className="py-20">
       <AllProducts />
-    </div>
+    </section>
   );
 };
 

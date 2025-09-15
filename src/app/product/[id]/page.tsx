@@ -9,7 +9,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
   const product = await GetspecificProduct(id);
   return (
-    <section className="flex flex-col md:flex-row items-center justify-center p-5">
+    <section className="flex flex-col md:flex-row items-center justify-center p-5 py-20">
       <div className="md:w-2/5"><ProductSwiper productImage = {product.images} productName={product.title}/></div>
       <div className="md:w-3/5 grid gap-3 p-10">
         <h1 className="text-3xl font-bold">{product?.title}</h1>
