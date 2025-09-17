@@ -1,3 +1,5 @@
+'use server'
+
 import { Product } from "../../Types/product.t";
 
 export const GetspecificProduct = async(id:string) => {

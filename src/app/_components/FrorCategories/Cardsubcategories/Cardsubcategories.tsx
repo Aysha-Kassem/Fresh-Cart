@@ -11,15 +11,14 @@ import {
 } from "../../../../components/ui/card";
 
 // types
-import { Category } from "../../../../Types/category.t";
-import { SubCategory } from "../../../../Types/SubCategories.t";
+import { Category, Subcategory } from "../../../../Types/product.t";
 
 const Cardsubcategories = ({
   category,
   subCategories,
 }: {
   category: Category;
-  subCategories: SubCategory[];
+  subCategories: Subcategory[];
 }) => {
   const [subCatigory, setSubCatigory] = useState(false);
   return (

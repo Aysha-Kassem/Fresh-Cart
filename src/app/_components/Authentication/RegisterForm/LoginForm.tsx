@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 // ui
 import {
@@ -30,6 +30,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
+  const [loding, setLoding] = useState(false);
 
   const form = useForm<LoginFormSchemaType>({
     resolver: zodResolver(LoginFormSchema),
@@ -40,6 +41,7 @@ const LoginForm = () => {
   });
 
   const handelLogin = async (values: LoginFormSchemaType) => {
+    setLoding(true);
     const res = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -49,9 +51,11 @@ const LoginForm = () => {
 
     if (res?.error) {
       toast.error(res.error);
+      setLoding(false);
     } else {
       toast.success("Login successful!");
-      window.location.href = res?.url || '/';
+      setLoding(false);
+      window.location.href = res?.url || "/";
     }
   };
 
@@ -101,7 +105,7 @@ const LoginForm = () => {
           type="submit"
           className="bg-green-800 hover:bg-green-700 text-white"
         >
-          Login
+          {loding ? "waiting 😮‍💨" : "Login"}
         </Button>
       </form>
     </Form>

@@ -1,24 +1,8 @@
+// src/auth.ts
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { jwtDecode } from "jwt-decode";
-
-interface JwtPayload {
-  id: string;
-  iat?: number;
-  exp?: number;
-}
-
-export interface NextAuthResponse {
-  message: string;
-  user: NextAuthUser;
-  token: string;
-}
-
-export interface NextAuthUser {
-  name: string;
-  email: string;
-  role: string;
-}
+import { AuthResponse, JwtPayload } from "./Types/AuthResponse";
 
 declare module "next-auth" {
   interface Session {
@@ -50,9 +34,10 @@ declare module "next-auth/jwt" {
 }
 
 export const authOptions: AuthOptions = {
-  pages: {
-    signIn: "/login",
-  },
+  secret: process.env.NEXTAUTH_SECRET,
+  session: { strategy: "jwt" },
+
+  pages: { signIn: "/login" },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -72,13 +57,13 @@ export const authOptions: AuthOptions = {
           }
         );
 
-        const data: NextAuthResponse = await res.json();
+        const data: AuthResponse = await res.json();
 
-        if (res.ok && data?.token) {
-          const {id} = jwtDecode<JwtPayload>(data.token);
+        if ("token" in data) {
+          const { id } = jwtDecode<JwtPayload>(data.token);
 
           return {
-            id: id,
+            id,
             name: data.user.name,
             email: data.user.email,
             role: data.user.role,
@@ -92,28 +77,24 @@ export const authOptions: AuthOptions = {
   ],
 
   callbacks: {
-    // server
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
         token.role = user.role;
-        token.token = user.token
+        token.token = user.token;
       }
       return token;
     },
 
-    // client
     async session({ session, token }) {
-      if (token) {
-        session.user = {
-          id: token.id,
-          name: token.name,
-          email: token.email,
-          role: token.role,
-        };
-      }
+      session.user = {
+        id: token.id,
+        name: token.name,
+        email: token.email,
+        role: token.role,
+      };
       return session;
     },
   },

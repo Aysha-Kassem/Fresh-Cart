@@ -1,4 +1,4 @@
-export type AuthResponse = 
+export type AuthResponse =
   | {
       statusMsg: string;
       message: string;
@@ -12,3 +12,11 @@ export type AuthResponse =
       };
       token: string;
     };
+
+export interface JwtPayload {
+  id: string;
+  iat?: number;
+  exp?: number;
+}
+
+

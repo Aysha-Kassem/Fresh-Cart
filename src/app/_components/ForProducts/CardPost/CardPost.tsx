@@ -24,7 +24,6 @@ const CardPost = ({ product }: { product: Product }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      
       <Link href={`/product/${product._id}`}>
         <CardHeader>
           <Image
@@ -37,7 +36,9 @@ const CardPost = ({ product }: { product: Product }) => {
         </CardHeader>
 
         <CardContent className="px-5">
-          <CardTitle className="pb-3 !text-green-800 line-clamp-2">{product.title}</CardTitle>
+          <CardTitle className="pb-3 !text-green-800 line-clamp-2">
+            {product.title}
+          </CardTitle>
           <CardDescription>
             <p className="!line-clamp-1 text-sm text-gray-600">
               {product.description}
@@ -53,8 +54,10 @@ const CardPost = ({ product }: { product: Product }) => {
       </Link>
 
       <CardFooter className="flex justify-between items-center px-4">
-        {hovered && (<ButtonCart />)}
-        <div className="ml-auto"><ButtonWishList /></div>
+        {hovered && <ButtonCart id={product._id} />}
+        <div className="ml-auto">
+          <ButtonWishList id={product._id} />
+        </div>
       </CardFooter>
     </Card>
   );

@@ -1,3 +1,4 @@
+'use server'
 
 import { Category } from '../../Types/product.t';
 

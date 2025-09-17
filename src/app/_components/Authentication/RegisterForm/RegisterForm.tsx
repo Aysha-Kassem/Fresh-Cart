@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 // ui
@@ -32,6 +32,7 @@ import { AxiosError } from "axios";
 
 const RegisterForm = () => {
   const router = useRouter();
+  const [loding, setLoding] = useState(false);
 
   const formSchema = RegisterFormSchema;
   const form = useForm<RegisterFormSchemaType>({
@@ -46,6 +47,7 @@ const RegisterForm = () => {
   });
 
   const handelRegister = async (values: RegisterFormSchemaType) => {
+    setLoding(true);
     try {
       const signup = await Signup(values);
       if ("user" in signup) {
@@ -54,10 +56,13 @@ const RegisterForm = () => {
       } else {
         toast.error(signup.message);
       }
+      setLoding(false);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       toast.error(err.response?.data?.message || "Something went wrong!");
-      if(err.response?.data?.message === 'Account Already Exists')router.push("/login");
+      if (err.response?.data?.message === "Account Already Exists")
+        router.push("/login");
+      setLoding(false);
     }
   };
 
@@ -143,7 +148,7 @@ const RegisterForm = () => {
           type="submit"
           className="bg-green-800 hover:bg-green-700 text-white"
         >
-          Register
+          {loding ? "waiting 😮‍💨" : "Register"}
         </Button>
       </form>
     </Form>

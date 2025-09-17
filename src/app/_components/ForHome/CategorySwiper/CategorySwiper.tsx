@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // type
-import { Category } from "../../../../Types/category.t";
+import { Category } from "../../../../Types/product.t";
 
 const CategorySwiper = ({ categories }: { categories: Category[] }) => {
   const length = categories.length;

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Encode_Sans_Expanded } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar/Navbar";
 import { Toaster } from "../components/ui/sonner";
+import Providers from "../Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +36,11 @@ export default function Layout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${encodeSans.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Toaster position="top-center"/>
+        <Providers>
+          <Navbar />
+          {children}
+          <Toaster position="top-center" />
+        </Providers>
       </body>
     </html>
   );
