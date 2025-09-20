@@ -56,7 +56,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="text-sm md:text-xs text-gray-900 flex flex-col md:flex-row justify-between items-center p-4 gap-5 px-16 md:px-10 bg-gray-50 fixed w-full z-10 shadow-md">
+    <nav className="text-sm text-gray-900 flex flex-col md:flex-row justify-between items-center p-4 gap-5 px-16 md:px-10 bg-gray-50 fixed w-full z-10 shadow-md">
       <div className="flex justify-between items-center w-full md:w-auto gap-5">
         {/* Logo */}
         <Link href="/">
@@ -105,7 +105,7 @@ const Navbar = () => {
           {/* Menu Icon (hidden on large screens) */}
           <button
             onClick={() => setNav(!nav)}
-            className="relative w-3 h-3 flex flex-col justify-between"
+            className="relative w-3 h-3 flex flex-col justify-between md:hidden"
           >
             <motion.span
               animate={nav ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
