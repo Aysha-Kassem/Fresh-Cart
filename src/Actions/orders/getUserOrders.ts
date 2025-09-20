@@ -7,10 +7,17 @@ import axios from "axios";
 import { getMyToken } from "../../utilities/token";
 import { jwtDecode } from "jwt-decode";
 
+
+interface MyTokenPayload {
+  id: string;
+}
+
+
+
 export const getUserOrdersAction = async () => {
   const token = await getMyToken();
   if (!token) window.location.href = "/login";
-  const { id } = jwtDecode(token);
+  const { id } = jwtDecode<MyTokenPayload>(token);
 
   const { data } = await axios.get(
     `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`
