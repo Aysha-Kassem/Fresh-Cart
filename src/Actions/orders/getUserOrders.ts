@@ -16,7 +16,11 @@ interface MyTokenPayload {
 
 export const getUserOrdersAction = async () => {
   const token = await getMyToken();
-  if (!token) window.location.href = "/login";
+  if (!token) {
+    window.location.href = "/login";
+    return; 
+  }
+
   const { id } = jwtDecode<MyTokenPayload>(token);
 
   const { data } = await axios.get(
@@ -25,3 +29,4 @@ export const getUserOrdersAction = async () => {
 
   return data;
 };
+
