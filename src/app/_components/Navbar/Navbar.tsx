@@ -80,11 +80,11 @@ const Navbar = () => {
                 >
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link href="/profile">Profile</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="/allorders">Last Orders</Link>{" "}
+                  <DropdownMenuItem asChild>
+                    <Link href="/allorders">Last Orders</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Button
@@ -139,30 +139,35 @@ const Navbar = () => {
             <Link
               className="hover:border-green-800 hover:border-b"
               href="/cart"
+              onClick={() => setNav(false)}
             >
               Cart
             </Link>
             <Link
               className="hover:border-green-800 hover:border-b"
               href="/wish-list"
+              onClick={() => setNav(false)}
             >
               Wish List
             </Link>
             <Link
               className="hover:border-green-800 hover:border-b"
               href="/products"
+              onClick={() => setNav(false)}
             >
               Products
             </Link>
             <Link
               className="hover:border-green-800 hover:border-b"
               href="/categories"
+              onClick={() => setNav(false)}
             >
               Categories
             </Link>
             <Link
               className="hover:border-green-800 hover:border-b"
               href="/brands"
+              onClick={() => setNav(false)}
             >
               Brands
             </Link>
@@ -177,12 +182,14 @@ const Navbar = () => {
                 <Link
                   className="hover:border-green-800 hover:border-b"
                   href="/login"
+                  onClick={() => setNav(false)}
                 >
                   Login
                 </Link>
                 <Link
                   className="hover:border-green-800 hover:border-b"
                   href="/register"
+                  onClick={() => setNav(false)}
                 >
                   Register
                 </Link>
@@ -212,11 +219,11 @@ const Navbar = () => {
                       >
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem asChild>
                           <Link href="/profile">Profile</Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Link href="/allorders">Last Orders</Link>{" "}
+                        <DropdownMenuItem asChild>
+                          <Link href="/allorders">Last Orders</Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
                           <Button

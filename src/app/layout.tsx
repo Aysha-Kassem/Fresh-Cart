@@ -39,7 +39,7 @@ export default function Layout({
         <Providers>
           <Navbar />
           {children}
-          <Toaster position="top-center" />
+          <Toaster position="top-center" duration={3000} />
         </Providers>
       </body>
     </html>
