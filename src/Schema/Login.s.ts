@@ -5,7 +5,7 @@ export const LoginFormSchema = z.object({
 
   password: z
     .string()
-    .regex(/^[A-Za-z][A-Za-z0-9]{5,8}$/, {
+    .regex(/^[A-Za-z][A-Za-z0-9]{5,10}$/, {
       message:
         "Password must start with a letter, be 6-9 characters long, and contain only letters and numbers.",
     }),

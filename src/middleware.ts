@@ -33,13 +33,13 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/",
-    "/cart/:path*",
+    "/cart",
     "/wish-list/:path*",
     "/prodeuts/:path*",
     "/prodeut/:path*",
     "/categories/:path*",
     "/brands/:path*",
     "/login",
-    "/register",
+    "/register"
   ],
 };

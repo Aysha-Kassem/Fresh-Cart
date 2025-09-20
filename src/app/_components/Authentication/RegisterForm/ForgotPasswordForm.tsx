@@ -31,12 +31,14 @@ type InputField<TFormValues extends FieldValues> = {
 };
 
 const ForgotPasswordForm = <TFormValues extends FieldValues>({
+  bigTitle,
   title,
   buttonTitle,
   inputs,
   form,
   onSubmit,
 }: {
+  bigTitle: string;
   title: string;
   buttonTitle: string;
   inputs: InputField<TFormValues>[];
@@ -44,10 +46,10 @@ const ForgotPasswordForm = <TFormValues extends FieldValues>({
   onSubmit: (values: TFormValues) => void;
 }) => {
   return (
-    <section className="container mx-auto py-20 flex justify-center h-screen">
+    <section className="container mx-auto flex justify-center">
       <Card className="w-full max-w-md md:max-w-lg lg:max-w-xl border-0 text-sm">
         <CardHeader>
-          <CardTitle className="text-green-800">Forgot Password</CardTitle>
+          <CardTitle className="text-green-800">{bigTitle}</CardTitle>
           <CardDescription className="text-gray-600">{title}</CardDescription>
         </CardHeader>
 

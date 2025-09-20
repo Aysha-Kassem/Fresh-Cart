@@ -1,24 +1,20 @@
 "use server";
 
-// API
 import axios from "axios";
 
-// token
 import { getMyToken } from "../../utilities/token";
 
-export const GetUserCartActions = async () => {
+export const GetUserAddresses = async () => {
   const token = await getMyToken();
-
-  if (!token) return { data: null };
+  if (!token) window.location.href = "/login";
 
   const { data } = await axios.get(
-    "https://ecommerce.routemisr.com/api/v1/cart",
+    "https://ecommerce.routemisr.com/api/v1/addresses",
     {
       headers: {
         token,
       },
     }
   );
-
   return data;
 };

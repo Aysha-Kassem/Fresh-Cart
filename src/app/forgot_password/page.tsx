@@ -25,7 +25,7 @@ import { AxiosError } from "axios";
 
 const ForgotPassword = () => {
   const router = useRouter();
-  const [loding, setLoding] = useState(false)
+  const [loding, setLoding] = useState(false);
 
   const form = useForm<ForgotPasswordFormSchemaType>({
     resolver: zodResolver(ForgotPasswordFormSchema),
@@ -35,33 +35,35 @@ const ForgotPassword = () => {
   });
 
   const handelForgotPassword = async (values: ForgotPasswordFormSchemaType) => {
-    setLoding(true)
+    setLoding(true);
     try {
-      const forgotPassword = await ForgotPasswordAPI(values);      
+      const forgotPassword = await ForgotPasswordAPI(values);
       toast.success(forgotPassword?.message);
       router.push("/verify-code");
-      setLoding(false)
-      
+      setLoding(false);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       toast.error(err.response?.data?.message || "Something went wrong!");
-      setLoding(false)
+      setLoding(false);
     }
   };
   return (
-    <ForgotPasswordForm
-      title="Enter your email below to receive a verification code"
-      buttonTitle= {loding? 'waiting 😮‍💨':"Verify"}
-      inputs={[
-        {
-          name: "email",
-          title: "Email",
-          type: "email",
-        },
-      ]}
-      form={form}
-      onSubmit={handelForgotPassword}
-    />
+    <div className="py-20 h-screen">
+      <ForgotPasswordForm
+        bigTitle="Forgot Password"
+        title="Enter your email below to receive a verification code"
+        buttonTitle={loding ? "waiting 😮‍💨" : "Verify"}
+        inputs={[
+          {
+            name: "email",
+            title: "Email",
+            type: "email",
+          },
+        ]}
+        form={form}
+        onSubmit={handelForgotPassword}
+      />
+    </div>
   );
 };
 

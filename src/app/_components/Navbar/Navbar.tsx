@@ -20,6 +20,19 @@ import {
 
 // UI
 import { Button } from "../../../components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../../components/ui/dropdown-menu";
 
 // next auth
 import { signOut, useSession } from "next-auth/react";
@@ -50,11 +63,51 @@ const Navbar = () => {
           <Image src={logo} alt="Logo" width={100} height={100} />
         </Link>
 
-        {/* Menu Icon (hidden on large screens) */}
-        <IoMenuSharp
-          className="text-3xl cursor-pointer md:hidden"
-          onClick={() => setNav(!nav)}
-        />
+        <div className="flex items-center gap-1">
+          {/* Account Menu aligned to right */}
+          {status === "authenticated" && (
+            <div className="md:hidden">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage src="/icon-7797704_640.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="bg-white w-56 text-center"
+                  align="end"
+                >
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/allorders">Last Orders</Link>{" "}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Button
+                      className="bg-green-800 hover:bg-green-700 text-white w-full"
+                      onClick={() =>
+                        signOut({
+                          callbackUrl: "/login",
+                        })
+                      }
+                    >
+                      Sign Out
+                    </Button>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          )}
+          {/* Menu Icon (hidden on large screens) */}
+          <IoMenuSharp
+            className="text-3xl cursor-pointer md:hidden"
+            onClick={() => setNav(!nav)}
+          />
+        </div>
       </div>
 
       {/* Links + Auth + Social */}
@@ -81,7 +134,7 @@ const Navbar = () => {
             </Link>
             <Link
               className="hover:border-green-800 hover:border-b"
-              href="/prodeuts"
+              href="/products"
             >
               Products
             </Link>
@@ -128,18 +181,43 @@ const Navbar = () => {
                     {numberOfCart > 0 ? numberOfCart : "0"}
                   </span>
                 </div>
-
-                {/* Sign Out */}
-                <Button
-                  className="bg-green-800 hover:bg-green-700 text-white"
-                  onClick={() =>
-                    signOut({
-                      callbackUrl: "/login",
-                    })
-                  }
-                >
-                  Sign Out
-                </Button>
+                {status === "authenticated" && (
+                  <div className="hidden md:block">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Avatar className="cursor-pointer">
+                          <AvatarImage src="/icon-7797704_640.png" />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        className="bg-white w-56 text-center"
+                        align="end"
+                      >
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                          <Link href="/profile">Profile</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Link href="/allorders">Last Orders</Link>{" "}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Button
+                            className="bg-green-800 hover:bg-green-700 text-white w-full"
+                            onClick={() =>
+                              signOut({
+                                callbackUrl: "/login",
+                              })
+                            }
+                          >
+                            Sign Out
+                          </Button>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                )}
               </div>
             )}
           </div>

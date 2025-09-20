@@ -1,24 +1,24 @@
 "use server";
 
-// API
 import axios from "axios";
 
-// token
 import { getMyToken } from "../../utilities/token";
+import { UpdateUserDataFormSchemaType } from "../../Schema/UpdateUserData.s";
 
-export const UpdateCartCountActions = async (id: string, count: string) => {
+// tyeps
+
+export const UpdateDataAPI = async (values: UpdateUserDataFormSchemaType) => {
   const token = await getMyToken();
  if (!token) window.location.href = "/login";
 
   const { data } = await axios.put(
-    `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
-    { count },
+    "https://ecommerce.routemisr.com/api/v1/users/changeMyPassword",
+    values,
     {
       headers: {
         token,
       },
     }
   );
-
   return data;
 };

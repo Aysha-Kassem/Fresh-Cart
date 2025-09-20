@@ -8,8 +8,8 @@ import { getMyToken } from "../../utilities/token";
 
 export const AddToCartActions = async (id: string) => {
   const token = await getMyToken();
-  if (!token) throw new Error("Login Firest");
-
+ if (!token) window.location.href = "/login";
+  
   const values = {
     productId: id,
   };

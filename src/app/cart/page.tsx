@@ -1,7 +1,14 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { useRouter } from "next/navigation";
+
+// context
 import { CartContext } from "../../context/CartContext";
+
+// type
 import { AllCartProduct } from "../../Types/UserCart.t";
+
+// page and component
 import LodingPage from "../loading";
 import CartCard from "../_components/Cart/CartCard";
 import { Button } from "../../components/ui/button";
@@ -9,21 +16,20 @@ import { Button } from "../../components/ui/button";
 const Cart = () => {
   const cart = useContext(CartContext);
 
+  // router
+  const router = useRouter();
+
   if (!cart) {
     return (
       <p className="text-center text-gray-500 mt-10">Cart not available.</p>
     );
   }
 
-  const {
-    numberOfCart,
-    totalCartPrice,
-    products,
-    loding,
-    ClearAllCart,
-  } = cart;
+  const { numberOfCart, totalCartPrice, products, loding, ClearAllCart } = cart;
 
   if (loding) return <LodingPage />;
+
+  const isCartEmpty = !products || products.length === 0;
 
   return (
     <section className="py-20 px-10 sm:px-20 max-w-4xl mx-auto">
@@ -43,23 +49,29 @@ const Cart = () => {
           <div className="flex justify-around items-center py-5">
             <Button
               className="bg-red-700 text-white"
+              disabled={isCartEmpty}
               onClick={() => {
-                ClearAllCart();
+                if (!isCartEmpty) ClearAllCart();
               }}
             >
               Clear Cart
             </Button>
-            <Button className="bg-green-700 text-white">Check out</Button>
+            <Button
+              className="bg-green-700 text-white"
+              disabled={isCartEmpty}
+              onClick={() => {
+                if (!isCartEmpty) router.push("/payment");
+              }}
+            >
+              Check out
+            </Button>
           </div>
         </div>
 
         <div className="grid justify-center items-center">
           {products && products.length > 0 ? (
             products.map((product: AllCartProduct) => (
-              <CartCard
-                key={product._id}
-                product={product}
-              />
+              <CartCard key={product._id} product={product} />
             ))
           ) : (
             <p className="text-center text-gray-500 mt-10">No product exist.</p>

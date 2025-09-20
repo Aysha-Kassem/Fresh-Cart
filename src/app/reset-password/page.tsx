@@ -39,8 +39,8 @@ const ResetPassword = () => {
     setLoding(true);
     try {
       const token = await ResetPasswordAPI(values);
-      toast.success('successful change password');      
-        router.push("/");
+      toast.success("successful change password");
+      router.push("/");
       setLoding(false);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
@@ -49,24 +49,27 @@ const ResetPassword = () => {
     }
   };
   return (
-    <ForgotPasswordForm
-      title="Reset your account password"
-      buttonTitle={loding ? "waiting 😮‍💨" : "Reset password"}
-      inputs={[
-        {
-          name: "email",
-          title: "Email",
-          type: "email",
-        },
-        {
-          name: "newPassword",
-          title: "New Password",
-          type: "password",
-        },
-      ]}
-      form={form}
-      onSubmit={handelResetPassword}
-    />
+    <div className="py-20 h-screen">
+      <ForgotPasswordForm
+        bigTitle="Forgot Password"
+        title="Reset your account password"
+        buttonTitle={loding ? "waiting 😮‍💨" : "Reset password"}
+        inputs={[
+          {
+            name: "email",
+            title: "Email",
+            type: "email",
+          },
+          {
+            name: "newPassword",
+            title: "New Password",
+            type: "password",
+          },
+        ]}
+        form={form}
+        onSubmit={handelResetPassword}
+      />
+    </div>
   );
 };
 

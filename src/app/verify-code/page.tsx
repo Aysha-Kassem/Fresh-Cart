@@ -34,33 +34,36 @@ const VerifyCode = () => {
     },
   });
 
-  const handelVerifyCode = async (values: VerifyCodeFormSchemaType) => {    
+  const handelVerifyCode = async (values: VerifyCodeFormSchemaType) => {
     setLoding(true);
     try {
       const verifyResetCode = await VerifyResetCode(values);
-      toast.success(verifyResetCode?.status);      
+      toast.success(verifyResetCode?.status);
       router.push("/reset-password");
       setLoding(false);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
-      toast.error(err.response?.data?.message || "Something went wrong!");      
+      toast.error(err.response?.data?.message || "Something went wrong!");
       setLoding(false);
     }
   };
   return (
-    <ForgotPasswordForm
-      title="Enter the verification code sent to your email"
-      buttonTitle={loding ? "waiting 😮‍💨" : "Verify"}
-      inputs={[
-        {
-          name: "resetCode",
-          title: "Verification Code",
-          type: "text",
-        },
-      ]}
-      form={form}
-      onSubmit={handelVerifyCode}
-    />
+    <div className="py-20 h-screen">
+      <ForgotPasswordForm
+        bigTitle="Forgot Password"
+        title="Enter the verification code sent to your email"
+        buttonTitle={loding ? "waiting 😮‍💨" : "Verify"}
+        inputs={[
+          {
+            name: "resetCode",
+            title: "Verification Code",
+            type: "text",
+          },
+        ]}
+        form={form}
+        onSubmit={handelVerifyCode}
+      />
+    </div>
   );
 };
 
