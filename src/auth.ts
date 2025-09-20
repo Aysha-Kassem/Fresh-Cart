@@ -45,33 +45,39 @@ export const authOptions: AuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials) {
         if (!credentials) return null;
 
-        const res = await fetch(
-          "https://ecommerce.routemisr.com/api/v1/auth/signin",
-          {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: { "Content-Type": "application/json" },
+        try {
+          const res = await fetch(
+            "https://ecommerce.routemisr.com/api/v1/auth/signin",
+            {
+              method: "POST",
+              body: JSON.stringify(credentials),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+
+          const data: AuthResponse = await res.json();
+
+          if ("token" in data) {
+            const { id } = jwtDecode<JwtPayload>(data.token);
+
+            return {
+              id,
+              name: data.user.name,
+              email: data.user.email,
+              role: data.user.role,
+              token: data.token,
+            };
           }
-        );
 
-        const data: AuthResponse = await res.json();
-
-        if ("token" in data) {
-          const { id } = jwtDecode<JwtPayload>(data.token);
-
-          return {
-            id,
-            name: data.user.name,
-            email: data.user.email,
-            role: data.user.role,
-            token: data.token,
-          };
+          return null;
+        } catch (err) {
+          console.error("Authorize error:", err);
+          return null;
         }
-
-        throw new Error(data.message || "Error");
       },
     }),
   ],
