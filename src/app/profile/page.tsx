@@ -28,7 +28,7 @@ import {
   UpdateUserDataFormSchema,
   UpdateUserDataFormSchemaType,
 } from "../../Schema/UpdateUserData.s";
-import { AddAddressFormSchemaType } from "../../Schema/AddAddress.s";
+import { AddAddress as AddAddressType } from "../../Schema/AddAddress.s";
 
 // API
 import { UpdatePasswordAPI } from "../../api/Authentication/UpdatePasswordAPI";
@@ -45,7 +45,7 @@ const Profile = () => {
   const [loding, setLoding] = useState(false);
 
   // state for addresses
-  const [addresses, setAddresses] = useState<AddAddressFormSchemaType[]>([]);
+  const [addresses, setAddresses] = useState<AddAddressType[]>([]);
   const [loadingAddresses, setLoadingAddresses] = useState(true);
   const [showNewAddresses, setShowNewAddresses] = useState(false);
 

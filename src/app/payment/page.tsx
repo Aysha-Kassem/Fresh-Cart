@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 // validation
-import { paymentFormSchemaType } from "../../Schema/payment.s";
 import {
+  AddAddress,
   AddAddressFormSchema,
   AddAddressFormSchemaType,
 } from "../../Schema/AddAddress.s";
@@ -34,6 +34,7 @@ import { CartContext, CartContextType } from "../../context/CartContext";
 import { CashOrderAction } from "../../Actions/orders/CashOrder";
 import { OnlineOrderAction } from "../../Actions/orders/OnlineOrder";
 
+
 const Payment = () => {
   const cartContext = useContext<CartContextType | null>(CartContext);
 
@@ -46,7 +47,7 @@ const Payment = () => {
   const [loding, setLoding] = useState(false);
 
   // for addres
-  const [addresses, setAddresses] = useState<paymentFormSchemaType[]>([]);
+  const [addresses, setAddresses] = useState<AddAddress[]>([]);
   const [paymentType, setPaymentType] = useState("");
   const [showAddress, setShowAddress] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -121,7 +122,7 @@ const Payment = () => {
   };
 
   // payment
-  const handlePayment = async (address: AddAddressFormSchemaType) => {
+  const handlePayment = async (address: AddAddress) => {
     setLoding(true);
     try {
       const { _id, name, ...rest } = address;

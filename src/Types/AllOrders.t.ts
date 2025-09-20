@@ -1,9 +1,9 @@
-import { paymentFormSchemaType } from "../Schema/payment.s";
+import { PaymentFormSchemaType } from "../Schema/payment.s";
 import { Brand, Category, Subcategory } from "./product.t";
 import { AllCartProduct } from "./UserCart.t";
 
 export interface AllOrdersT {
-  shippingAddress: paymentFormSchemaType;
+  shippingAddress: PaymentFormSchemaType;
   taxPrice: number;
   shippingPrice: number;
   totalOrderPrice: number;

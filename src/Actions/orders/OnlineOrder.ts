@@ -5,11 +5,11 @@ import axios from "axios";
 
 // token
 import { getMyToken } from "../../utilities/token";
-import { paymentFormSchemaType } from "../../Schema/payment.s";
+import { PaymentFormSchemaType } from "../../Schema/payment.s";
 
 export const OnlineOrderAction = async (
   id: string,
-  addres: paymentFormSchemaType
+  addres: PaymentFormSchemaType
 ) => {
   const token = await getMyToken();
   if (!token) window.location.href = "/login";

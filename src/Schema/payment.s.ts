@@ -6,4 +6,8 @@ export const paymentFormSchema = z.object({
   city: z.string(),
 });
 
-export type paymentFormSchemaType = z.infer<typeof paymentFormSchema>;
+export type PaymentFormSchemaType = z.infer<typeof paymentFormSchema>;
+
+export interface Address extends PaymentFormSchemaType {
+  _id: string;
+}
