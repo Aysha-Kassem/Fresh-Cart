@@ -30,12 +30,19 @@ import { RemoveAddressAPI } from "../../api/User Addresses/RemoveAddress";
 import { AxiosError } from "axios";
 
 // context
-import { CartContext } from "../../context/CartContext";
+import { CartContext, CartContextType } from "../../context/CartContext";
 import { CashOrderAction } from "../../Actions/orders/CashOrder";
 import { OnlineOrderAction } from "../../Actions/orders/OnlineOrder";
 
 const Payment = () => {
-  const { cartId } = useContext(CartContext);
+  const cartContext = useContext<CartContextType | null>(CartContext);
+
+  if (!cartContext) {
+    throw new Error("PaymentPage must be used within a CartProvider");
+  }
+
+  const { cartId } = cartContext;
+
   const [loding, setLoding] = useState(false);
 
   // for addres
