@@ -22,7 +22,7 @@ const encodeSans = Encode_Sans_Expanded({
 });
 
 export const metadata: Metadata = {
-  title: "My App",
+  title: "Fresh Cart",
   description: "Next.js app with custom fonts",
 };
 
