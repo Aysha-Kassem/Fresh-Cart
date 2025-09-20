@@ -7,7 +7,7 @@ import Link from "next/link";
 import logo from "../../../../public/screens/freshcart-logo.svg";
 
 // icons
-import { IoMenuSharp } from "react-icons/io5";
+import { motion } from "framer-motion";
 import {
   FaFacebook,
   FaInstagram,
@@ -103,10 +103,26 @@ const Navbar = () => {
             </div>
           )}
           {/* Menu Icon (hidden on large screens) */}
-          <IoMenuSharp
-            className="text-3xl cursor-pointer md:hidden"
+          <button
             onClick={() => setNav(!nav)}
-          />
+            className="relative w-3 h-3 flex flex-col justify-between"
+          >
+            <motion.span
+              animate={nav ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="block h-0.5 w-4 bg-gray-800 rounded"
+            />
+            <motion.span
+              animate={nav ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="block h-0.5 w-4 bg-gray-800 rounded"
+            />
+            <motion.span
+              animate={nav ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="block h-0.5 w-4 bg-gray-800 rounded"
+            />
+          </button>
         </div>
       </div>
 
