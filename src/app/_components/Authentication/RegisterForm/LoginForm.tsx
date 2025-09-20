@@ -55,7 +55,7 @@ const LoginForm = () => {
     } else {
       toast.success("Login successful!");
       setLoding(false);
-      window.location.href = res?.url || "/";
+      window.location.href = "/";
     }
   };
 

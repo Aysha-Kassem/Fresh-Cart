@@ -73,7 +73,7 @@ export const authOptions: AuthOptions = {
             };
           }
 
-          return null;
+          throw new Error(data.message || "Invalid credentials");
         } catch (err) {
           console.error("Authorize error:", err);
           return null;
